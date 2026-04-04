@@ -1,40 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mahi Weather App | Live Forecast</title>
+const url = 'https://api.openweathermap.org/data/2.5/weather';
+const apikey = '7ccaee86d4d787a41defea4cecc2e4ac'; // Check if this is active
 
-  <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-</head>
+$(document).ready(function () {
+    // Default load
+    weatherFn('Lahore'); 
 
-<body>
-  <div class="container">
-    <div class="weather-card animate__animated animate__fadeIn">
-      <h1 class="title">Mahi Weather App</h1>
-      <h3>Live Forecast ☁️</h3>
+    $('#city-input-btn').on('click', function () {
+        let cityName = $('#city-input').val();
+        weatherFn(cityName);
+    });
 
-      <div class="search-section">
-        <input type="text" id="city-input" placeholder="Enter city name...">
-        <button id="city-input-btn">Search</button>
-      </div>
+    $('#city-input').on('keypress', function (e) {
+        if (e.which == 13) weatherFn($(this).val());
+    });
+});
 
-      <div id="weather-info" class="animate__animated animate__fadeIn">
-        <h2 id="city-name"></h2>
-        <p id="date"></p>
-        <img id="weather-icon" src="" alt="Weather Icon">
-        <p id="temperature" class="temp-style"></p>
-        <p id="description"></p>
-        <p id="wind-speed"></p>
-      </div>
-    </div>
-  </div>
+async function weatherFn(cName) {
+    // Spelling aur spaces ko theek karne ke liye trim aur lowercase
+    let city = cName.trim().toLowerCase(); 
+    
+    if (!city) return;
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="script2.js"></script>
-</body>
-</html>
+    const queryUrl = `${url}?q=${city}&appid=${apikey}&units=metric`;
+
+    try {
+        const response = await fetch(queryUrl);
+        const data = await response.json();
+
+        if (response.ok) {
+            updateUI(data);
+        } else {
+            console.log("City not found");
+            alert("Shehar ka naam sahi likhein! 😊");
+        }
+    } catch (error) {
+        console.error("Network Error:", error);
+    }
+}
+
+function updateUI(data) {
+    // Ye names tumhare HTML ki IDs se match karne chahiye
+    $('#city-name').text(data.name);
+    $('#temperature').text(Math.round(data.main.temp) + "°");
+    $('#description').text(data.weather[0].description);
+    $('#wind-speed').text(data.wind.speed + " m/s");
+    $('#date').text(moment().format('LL'));
+    
+    const iconCode = data.weather[0].icon;
+    $('#weather-icon').attr('src', `https://openweathermap.org/img/wn/${iconCode}@4x.png`);
+    
+    // Show the card
+    $('#weather-info').fadeIn();
+}
