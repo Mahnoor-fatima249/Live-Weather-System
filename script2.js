@@ -1,76 +1,54 @@
 const url = 'https://api.openweathermap.org/data/2.5/weather';
-const apikey = '7ccaee86d4d787a41defea4cecc2e4ac';
+const apikey = '7ccaee86d4d787a41defea4cecc2e4ac'; // Check if this is active
 
 $(document).ready(function () {
-    // Page load hotay hi default city ka weather dikhao (Alert se bachne ke liye)
+    // Default load
     weatherFn('Lahore'); 
 
-    // Search button click event
     $('#city-input-btn').on('click', function () {
-        let cityName = $('#city-input').val().trim();
+        let cityName = $('#city-input').val();
         weatherFn(cityName);
     });
 
-    // Enter key support
-    $('#city-input').keypress(function (e) {
-        if (e.which == 13) {
-            $('#city-input-btn').click();
-        }
+    $('#city-input').on('keypress', function (e) {
+        if (e.which == 13) weatherFn($(this).val());
     });
 });
 
 async function weatherFn(cName) {
-    if (!cName) {
-        alert("Please Enter a City Name! 😊");
-        return;
-    }
+    // Spelling aur spaces ko theek karne ke liye trim aur lowercase
+    let city = cName.trim().toLowerCase(); 
+    
+    if (!city) return;
 
-    const tempUrl = `${url}?q=${cName}&appid=${apikey}&units=metric`;
+    const queryUrl = `${url}?q=${city}&appid=${apikey}&units=metric`;
 
     try {
-        const res = await fetch(tempUrl);
-        const data = await res.json();
+        const response = await fetch(queryUrl);
+        const data = await response.json();
 
-        if (res.ok) {
-            weatherShowFn(data);
+        if (response.ok) {
+            updateUI(data);
         } else {
-            alert('City not found. Please try again. ❌');
+            console.log("City not found");
+            alert("Shehar ka naam sahi likhein! 😊");
         }
     } catch (error) {
-        console.error('Error fetching weather data:', error);
+        console.error("Network Error:", error);
     }
 }
 
-function weatherShowFn(data) {
-    // 1. Basic Info Update
-    $('#city-name').text(`${data.name}, ${data.sys.country}`);
-    $('#date').text(moment().format("MMM Do YYYY, h:mm:ss a"));
-    $('#temperature').html(`${Math.round(data.main.temp)}°C`);
+function updateUI(data) {
+    // Ye names tumhare HTML ki IDs se match karne chahiye
+    $('#city-name').text(data.name);
+    $('#temperature').text(Math.round(data.main.temp) + "°");
     $('#description').text(data.weather[0].description);
-    $('#wind-speed').text(`Wind Speed: ${data.wind.speed} m/s`);
-
-    // 2. Icon Update
-    const icon = data.weather[0].icon;
-    $('#weather-icon').attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`);
-
-    // 3. DYNAMIC BACKGROUND LOGIC (The Pro Touch)
-    const mainWeather = data.weather[0].main;
-    const body = $('body');
-
-    // Purani weather classes remove karein
-    body.removeClass('sunny-bg rainy-bg cloudy-bg');
-
-    if (mainWeather === "Clear") {
-        body.css('background', 'linear-gradient(45deg, #00b4db, #0083b0)'); // Sunny Blue
-    } else if (mainWeather === "Rain" || mainWeather === "Drizzle") {
-        body.css('background', 'linear-gradient(45deg, #2c3e50, #4ca1af)'); // Rainy Grey/Blue
-    } else if (mainWeather === "Clouds") {
-        body.css('background', 'linear-gradient(45deg, #bdc3c7, #2c3e50)'); // Cloudy Grey
-    } else {
-        // Default gradient (jo tumne CSS mein likha hai)
-        body.css('background', 'linear-gradient(45deg, #001F3F, #006F7A, #003C57)');
-    }
-
-    // 4. Show with Animation
-    $('#weather-info').fadeIn().addClass('animate__animated animate__zoomIn');
+    $('#wind-speed').text(data.wind.speed + " m/s");
+    $('#date').text(moment().format('LL'));
+    
+    const iconCode = data.weather[0].icon;
+    $('#weather-icon').attr('src', `https://openweathermap.org/img/wn/${iconCode}@4x.png`);
+    
+    // Show the card
+    $('#weather-info').fadeIn();
 }
