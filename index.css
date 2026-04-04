@@ -1,123 +1,129 @@
-body {
+* {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    /* Soft Animated Background */
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    /* Unique Animated Mesh Background */
+    background: linear-gradient(45deg, #020024 0%, #090979 35%, #00d4ff 100%);
     background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
-    transition: all 1s ease;
+    animation: meshFlow 10s infinite alternate;
+    overflow: hidden;
 }
 
-@keyframes gradientMove {
+@keyframes meshFlow {
     0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
-/* Dynamic Classes for JS */
-body.sunny-bg { background: linear-gradient(to right, #f7b733, #fc4a1a); }
-body.rainy-bg { background: linear-gradient(to right, #203a43, #2c5364); }
-body.cloudy-bg { background: linear-gradient(to right, #bdc3c7, #2c3e50); }
-
-.container {
+.main-wrapper {
     width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+/* Floating Search Bar */
+.glass-search {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 10px 20px;
     display: flex;
-    justify-content: center;
-}
-
-.weather-card {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 30px;
-    padding: 40px;
-    width: 400px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-    color: white;
-}
-
-.title {
-    font-size: 28px;
-    margin-bottom: 5px;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-}
-
-h3 {
-    font-weight: 400;
-    margin-bottom: 30px;
-    opacity: 0.9;
-}
-
-.search-section {
-    margin-bottom: 30px;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 #city-input {
-    padding: 12px 20px;
-    border-radius: 25px;
+    background: transparent;
     border: none;
     outline: none;
-    background: rgba(255, 255, 255, 0.2);
     color: white;
-    width: 60%;
-}
-
-#city-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    font-size: 16px;
 }
 
 #city-input-btn {
-    padding: 12px 25px;
-    border-radius: 25px;
-    border: none;
     background: #fff;
-    color: #333;
-    font-weight: 700;
+    color: #000;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 #city-input-btn:hover {
-    transform: scale(1.05);
     background: #00d4ff;
     color: white;
+    transform: rotate(-45deg);
 }
 
-#weather-info {
-    display: none; /* JS se show hoga */
+/* Hero Card Styling */
+.hero-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(40px);
+    border-radius: 40px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    text-align: center;
 }
 
-#temperature {
-    font-size: 60px;
-    font-weight: 700;
+.location-tag {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    color: #00d4ff;
+}
+
+.display-center h1 {
+    font-size: 100px;
+    font-weight: 300;
     margin: 10px 0;
+    letter-spacing: -5px;
 }
 
-#description {
-    text-transform: capitalize;
-    font-size: 20px;
-    margin-bottom: 15px;
+.condition-box {
+    margin-bottom: 30px;
 }
 
 #weather-icon {
     width: 100px;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6));
 }
 
-#wind-speed {
+#description {
+    text-transform: uppercase;
     font-size: 14px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 8px 20px;
-    border-radius: 20px;
-    display: inline-block;
+    letter-spacing: 5px;
+    opacity: 0.6;
+}
+
+.bottom-stats {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+}
+
+.stat-box p {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    color: #8b949e;
+}
+
+.stat-box h4 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 14px;
 }
