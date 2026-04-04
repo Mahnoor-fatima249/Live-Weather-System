@@ -5,132 +5,102 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* Naya Vibrant Default Background */
-    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
-    transition: background 1s ease-in-out;
+    /* Darker, deeper base for better contrast */
+    background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
 }
 
-/* --- Dynamic Backgrounds (Better Color Palettes) --- */
-
-/* Sunny: Warm Orange & Soft Yellow */
-body.sunny-bg { 
-    background: linear-gradient(45deg, #ff9966, #ff5e62); 
-}
-
-/* Rainy: Elegant Deep Blue & Indigo */
-body.rainy-bg { 
-    background: linear-gradient(45deg, #373B44, #4286f4); 
-}
-
-/* Cloudy: Soft Grey & Sky Blue */
-body.cloudy-bg { 
-    background: linear-gradient(45deg, #757f9a, #d7dde8); 
-}
-
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+/* --- Dynamic Backgrounds with Glow --- */
+body.sunny-bg { background: linear-gradient(135deg, #FF512F 0%, #DD2476 100%); }
+body.rainy-bg { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+body.cloudy-bg { background: linear-gradient(135deg, #606c88 0%, #3f4c6b 100%); }
 
 .weather-card {
-    width: 400px;
-    padding: 35px;
-    border-radius: 30px; /* Zyada rounded corners */
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    /* Ultra-clean Glass look */
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    width: 380px;
+    padding: 40px;
+    border-radius: 40px; /* Rounder edges */
+    background: rgba(255, 255, 255, 0.05); /* Very transparent */
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Cyan Neon Glow */
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
     text-align: center;
-    transition: all 0.4s ease;
+    color: #fff;
+    transition: 0.5s ease;
 }
 
 .weather-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 60px rgba(0, 255, 255, 0.2);
+    border: 1px solid rgba(0, 255, 255, 0.4);
 }
 
 .title {
-    font-size: 26px;
-    font-weight: 700;
-    color: #ffffff; /* Pure white for a cleaner look */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #00f2ff; /* Cyber Cyan */
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+    margin-bottom: 30px;
 }
 
 #city-input {
-    width: 80%;
-    padding: 12px 20px;
-    margin-bottom: 15px;
-    border-radius: 25px; /* Pill shape input */
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    outline: none;
-    font-size: 15px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 15px;
     color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
     transition: 0.3s;
 }
 
 #city-input:focus {
-    width: 85%;
-    background: rgba(255, 255, 255, 0.2);
-    border-color: #fff;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #00f2ff;
 }
 
 #city-input-btn {
-    padding: 12px 30px;
-    border-radius: 25px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
     border: none;
-    background: #fff; /* White button with dark text */
-    color: #333;
-    font-weight: 700;
-    font-size: 14px;
+    background: #00f2ff;
+    color: #000;
+    font-weight: 900;
     cursor: pointer;
-    transition: 0.3s;
     text-transform: uppercase;
+    transition: 0.3s;
 }
 
 #city-input-btn:hover {
-    background: #00d4ff;
-    color: #fff;
-    box-shadow: 0 8px 15px rgba(0, 212, 255, 0.4);
-}
-
-#weather-info {
-    margin-top: 30px;
+    background: #fff;
+    box-shadow: 0 0 20px #00f2ff;
 }
 
 #temperature {
-    font-size: 55px; /* Bara aur bold */
-    font-weight: 800;
-    color: #fff;
-    margin: 5px 0;
+    font-size: 70px; /* Super Big */
+    font-weight: 900;
+    margin: 10px 0;
+    background: -webkit-linear-gradient(#fff, #00f2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #description {
-    font-size: 18px;
-    color: #e0e0e0;
-    font-weight: 400;
-    letter-spacing: 1px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
 }
 
 #wind-speed {
+    margin-top: 20px;
     font-size: 14px;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin-top: 15px;
-    display: inline-block;
-}
-
-#date {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: block;
 }
