@@ -44,3 +44,10 @@ function weatherShowFn(data) {
 
     $('#weather-info').fadeIn().addClass('animate__animated animate__fadeIn');
 }
+if (data.weather[0].main === "Rain") {
+    $('body').addClass('rainy-bg').removeClass('sunny-bg');
+} else if (data.weather[0].main === "Clear") {
+    $('body').addClass('sunny-bg').removeClass('rainy-bg');
+} else {
+    $('body').removeClass('rainy-bg sunny-bg'); // Default gradient
+}
