@@ -1,30 +1,58 @@
-# 🌦️ Real-Time Weather Application
+# 🌦️ Real-Time AI-Driven Weather Insights Dashboard
 
-A clean, responsive, and interactive Weather App built using **HTML5, CSS3, and Vanilla JavaScript**. This application fetches live weather data from cities across the globe using the **OpenWeatherMap API**.
-
-## 🚀 Key Features
-* **Global City Search:** Instantly get weather updates for any city worldwide.
-* **Live Data Fetching:** Displays real-time Temperature, Humidity, Wind Speed, and Weather Conditions.
-* **Responsive UI:** Fully functional and visually appealing on Mobile, Tablet, and Desktop screens.
-* **Dynamic Updates:** The interface updates instantly without refreshing the page.
-
-## 🛠️ Tech Stack & Tools
-* **Frontend:** HTML5 & CSS3 (Flexbox for Layout)
-* **Logic:** JavaScript (ES6+ Features)
-* **Data Source:** [OpenWeatherMap API](https://openweathermap.org/api)
-* **Version Control:** Git & GitHub
-
-## ⚙️ How to Use
-1. Clone this repository to your local machine.
-2. Open `index.html` in any modern web browser.
-3. Enter your desired City Name in the search bar and hit Enter!
-
-## 🌟 Learning Outcomes
-While building this project, I strengthened my expertise in:
-* **Asynchronous JavaScript:** Using the `fetch()` API to handle real-time data.
-* **DOM Manipulation:** Dynamically updating web elements based on JSON responses.
-* **API Integration:** Securely connecting and fetching data from third-party services.
-* **CSS Responsiveness:** Making sure the app looks great on all devices.
+A high-performance Python web application that transforms live meteorological data into actionable AI insights. Originally engineered as a frontend utility, this platform has been scaled into a dynamic full-stack microservice utilizing a **Python (Streamlit)** backend layer connected to the **OpenWeatherMap API**.
 
 ---
-**Developed by Mahnoor Fatima** | *BSIT Student at Virtual University of Pakistan* 🎓
+
+### 🚀 Key Engineering Upgrades
+
+* **Python Integration:** Fully migrated core system logic from raw client-side scripts to a stable Python environment.
+* **Asynchronous Data Handling:** Implemented robust HTTP request structures using Python's `requests` library to handle live third-party API payloads securely.
+* **AI Analytics Simulation:** Integrated an algorithmic engine that processes raw metrics (Temperature, Humidity) in real-time to generate automated system suggestions and behavioral alerts.
+* **Responsive Streamlit Engine:** Designed a fluid, dark-mode-optimized analytical interface replacing static structural templates.
+
+---
+
+### ⚙️ Tech Stack & Architecture
+
+| Component | Technology |
+| :--- | :--- |
+| **Core Language** | Python 3.10+ |
+| **Backend Infrastructure** | Streamlit Framework |
+| **Data Communications** | REST API Architecture via OpenWeatherMap SDK |
+| **Dependencies** | Requests, Pydantic (data parsing) |
+
+---
+
+### 🛠️ Local Installation & Deployment
+
+To deploy this analytical engine locally, follow these steps:
+
+1. **Clone the repository:**
+```bash
+   git clone [https://github.com/Mahnoor-fatima249/Live-Weather-System.git](https://github.com/Mahnoor-fatima249/Live-Weather-System.git)
+   cd Live-Weather-System
+
+```
+
+2. **Install production dependencies:**
+
+```bash
+   pip install -r requirements.txt
+
+```
+
+3. **Launch the backend server:**
+
+```bash
+   streamlit run app.py
+
+```
+
+---
+
+### 📊 Portfolio Matrix
+
+* **Developer:** Mahnoor Fatima
+* **Focus:** AI & Backend Architecture
+* **Current Status:** Optimized for active deployment and Multi-Agent data routing.
